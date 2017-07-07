@@ -1,0 +1,8 @@
+target/
+.settings
+.classpath
+.project
+src/main/resources
+src/main/vc/com/cartorios/model/Contato.java
+src/main/webapp/WEB-INF/views/*.html
+

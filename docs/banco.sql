@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.18, for Linux (i686)
 --
--- Host: localhost    Database: db_desafiocartorios
+-- Host: localhost    Database: db_cartorio
 -- ------------------------------------------------------
 -- Server version	5.7.18-0ubuntu0.16.04.1
 

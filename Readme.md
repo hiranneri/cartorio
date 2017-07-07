@@ -14,7 +14,7 @@ Sistema online feito para estudo, que tem a principal função de gerenciar os d
  - Uma IDE de sua preferência
  - Apache Tomcat 7.0 ou superior
  - MySQL
- - Após instalar o banco* é necessário que o script do banco seja executado, ou então, digite o comando:
+ - Após instalar o banco é necessário que o script do [banco](https://github.com/hiranneri/cartorio/tree/master/docs) seja executado, ou então, digite o comando:
 
   <code>CREATE DATABASE db_cartorio;</code>
 

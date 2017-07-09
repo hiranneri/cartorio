@@ -2,7 +2,6 @@ package vc.com.cartorios.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -58,12 +57,25 @@ public class CartorioDAO  {
 			
 			return cartorio;
 		}
-		@SuppressWarnings("unchecked")
+		public List<Cartorio> buscarPeloNome(String nome){
+			EntityManager em = getEM();
+			try{
+				Query query = em.createQuery("from Cartorio where nm_cartorio=:nome");
+				query.setParameter("nome", nome);
+				List<Cartorio> cartoriosLocalizados = Cartorio.castList(Cartorio.class,query.getResultList());
+				return cartoriosLocalizados;
+			}finally{
+				em.close();
+			}
+			
+			
+		}
+		
 		public List<Cartorio> listarCartorios(){
 			EntityManager em = getEM();
 			List<Cartorio> cartorios = new ArrayList<>();
 			Query query = em.createQuery("from Cartorio");
-			cartorios =query.getResultList();
+			cartorios = Cartorio.castList(Cartorio.class, query.getResultList());
 			return cartorios;
 		}
 

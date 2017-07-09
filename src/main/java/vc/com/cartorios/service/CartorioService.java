@@ -1,5 +1,8 @@
 package vc.com.cartorios.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -20,5 +23,20 @@ public class CartorioService {
 			return false;
 		}
 	}
-	
+	public List<Cartorio> pesquisarCartorio(String parametro,String valor){
+		List<Cartorio> cartorios = new ArrayList<>();
+		if(parametro.equalsIgnoreCase("id")){
+			cartorios.add(cartorioDAO.buscarPeloId(Long.parseLong(valor)));
+		}else if(parametro.equalsIgnoreCase("nome")) {
+			cartorios=cartorioDAO.buscarPeloNome(valor);
+		}else{
+			return null;
+		}
+		return cartorios;
+		
+	}
+	public List<Cartorio> pesquisarTodosCartorios(){
+		return cartorioDAO.listarCartorios();
+		
+	}
 }

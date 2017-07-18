@@ -27,7 +27,7 @@
 				<li><a href="#">Cartório</a>
 				<ul style="display: none;">					
 					<li><a href="/desafiocartorios/index">Home</a></li>
-					<li><a href="/desafiocartorios/cartorio/pesquisar">Pesquisar Cartório</a></li>
+					<li><a href="/desafiocartorios/cartorio/pesquisa">Pesquisar Cartório</a></li>
 					
 				</ul>
 				</li>

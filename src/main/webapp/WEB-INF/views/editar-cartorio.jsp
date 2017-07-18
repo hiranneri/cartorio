@@ -12,11 +12,8 @@
 	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 	<link type="text/css" href="<c:url value="/resources/css/icons.css"/>" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/skinblue.css"/>"/>
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/estilopesquisarcartorio.css"/>"/>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/responsive.css"/>"/>
 	<script src="<c:url value="/resources/js/jquery-1.9.0.min.js"/>"/></script><!-- the rest of the javascript at the bottom of the document -->
-	<script src="<c:url value="/resources/js/controlepesquisacartorio.js"/>"/></script>
-	
 </head>
 <body>
 	<div class="grid">
@@ -30,7 +27,7 @@
 				<li><a href="#">Cartório</a>
 				<ul style="display: none;">					
 					<li><a href="/desafiocartorios/index">Home</a></li>
-					<li><a href="/desafiocartorios/cartorio/cadastrar">Cadastrar Cartório</a></li>
+					<li><a href="/desafiocartorios/cartorio/pesquisa">Pesquisar Cartório</a></li>
 					
 				</ul>
 				</li>
@@ -47,7 +44,7 @@
 	<div class="grid">
 		<div class="row"> 
 			<div class="c8">
-				<p class="titlehead">Cartórios COM VOCÊ - Pesquisar Cartório</p>
+				<p class="titlehead">Cartórios COM VOCÊ - Editar Cartório</p>
 			</div>
 			<div class="c4">
 				<h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> São Paulo</h1>
@@ -61,70 +58,41 @@
 	<div class="shadowundertop"></div>
 		
 		<div class="row">
-		<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-				      
-		
-					<form action="/desafiocartorios/cartorio/pesquisar" method="get" id="form_pesquisaCartorio" name="form_pesquisaCartorio">
-						<span id="pesquisa">Pesquisar Por:</span> 
-						<input type="radio" id="id" name="parametroPesquisa" value="ID" 
-							onclick="exibeOutros();">
-						<label for="id" onclick="exibeOutros();" id="parametroPesquisa">ID</label>
-						
-						<input type="radio" id="nome" name="parametroPesquisa" value="Nome" 
-							onclick="exibeOutros();">
-						<label for="nome" onclick="exibeOutros();" id="parametroPesquisa">Nome<br></label><br>
-					 	
-					 	
-						<input type="search" name="valor" placeholder="Busca..." >
-	
-			      		<button type="submit" value="Pesquisar" id="btnPesquisar">Pesquisar</button>
-			      	</form>
-			      	
-			      </div>
-			  </div>
+			(*) Campos Obrigatórios
+			<br><br>
+			<form:form method="POST" modelAttribute="cartorio" action="/desafiocartorios/cartorio/cadastrar">
+				<form:label path="id">ID:</form:label>
+				<form:input path="id" readonly="true"/>
+				<br>
+				<form:label path="nome">Nome:</form:label>
+				<form:input path="nome" />
+				<br>
+				<form:label path="endereco.rua">Endereço:</form:label>
+				<form:input path="endereco.rua"/>
+				<br>
+				<form:label path="endereco.numero">Número</form:label>
+				<form:input type="number" path="endereco.numero"/>
+				<br>
+				<form:label path="endereco.cidade">Cidade</form:label>
+				<form:input path="endereco.cidade"/>
+				<br>
+				<form:label path="endereco.bairro">Bairro</form:label>
+				<form:input path="endereco.bairro"/>
+				<br>
+				<form:label path="endereco.estado">Estado</form:label>
+				<form:input path="endereco.estado"/>
+				<br>
+				
+				
+				<button type="submit" value="Salvar">Salvar</button>
+				
+			</form:form>
 		</div>
-      </section>
-		
-    	<table border="1" id="tabelaCartorios">
-    	<thead>
-			<tr>
-				<th>Nome</th>
-				<th>Endereço</th>
-				<th>Bairro</th>
-				<th>Cidade  </th>
-				<th>Estado</th>
-				<th>Ação</th>
-				<th>Ação</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${cartorio.nome}</td>
-		    		<td>${cartorio.endereco.rua},${cartorio.endereco.numero}</td>
-		    		<td>${cartorio.endereco.bairro}</td>
-		    		<td>${cartorio.endereco.cidade}</td>
-		    		<td>${cartorio.endereco.estado}</td>
-		    		<td>
-			    		<a href="<c:url value="/cartorio/editar"/>?id=${cartorio.id}">
-			    			<button type="button" class="btn btn-success" value="Editar">Editar</button>
-			    		</a>
-		    		</td>
-		    		<td>
-		    			<a href="<c:url value="/cartorio/excluir"/>?id=${cartorio.id}">
-		    				<button type="button" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir ?')" 
-		    					value="Excluir" >Excluir</button>
-		    			</a>
-		    		</td>
-			</tbody>
-		</table>
 		
 		
-			</div>
-		</div>
-	</div><!-- FOOTER
+		
+</div><!-- end grid -->
+<!-- FOOTER
 ================================================== -->
 <div id="wrapfooter">
 	<div class="grid">
@@ -140,9 +108,9 @@
 				<h2 class="title"><i class="icon-envelope-alt"></i> Contact</h2>
 				<hr class="footerstress">
 				<dl>
-					<dt>2536 Zamora Road, Missisipi, 74C</dt>
-					<dd><span>Telephone:</span>+1 348 271 9483</dd>
-					<dd>E-mail: <a href="more.html">mail@yourweb.com</a></dd>
+					<dt>Avenida Paulista, 7654</dt>
+					<dd><span>Telephone:</span>11 3456-7899</dd>
+					<dd>E-mail: <a href="more.html">cartorios@cartorio.com</a></dd>
 				</dl>
 				<ul class="social-links" style="margin-top:15px;">
 					<li class="twitter-link smallrightmargin">
@@ -163,17 +131,7 @@
 		</div>
 	</div>
 </div>
-<!-- copyright area -->
-<div class="copyright">
-	<div class="grid">
-		<div class="row">
-			<div class="c6">
-				 Your Name &copy; 2015. All Rights Reserved.
-			</div>
-			
-		</div>
-	</div>
-</div>
+
 
 <!-- JAVASCRIPTS
 ================================================== -->
@@ -181,13 +139,14 @@
 <script src="/resources/js/modernizr-latest.js"></script>
 
 <!-- menu & scroll to top -->
-<script src="<c:url value="/resources/js/common.js"/>"> </script>
+<script src="<c:url value="/resources/js/common.js"/>"/></script>
 	
 <!-- twitter -->
 <script src="/resources/js/jquery.tweet.js"></script>
 
 <!-- cycle -->
 <script src="<c:url value="/resources/js/jquery.cycle.js"/>"/></script>
+
 
 <!-- CALL toggle -->
 <script type="text/javascript"> 

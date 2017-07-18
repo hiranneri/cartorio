@@ -1,11 +1,5 @@
 package vc.com.cartorios.controller;
 
-import static java.nio.charset.StandardCharsets.ISO_8859_1;
-import static java.nio.charset.StandardCharsets.UTF_8;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vc.com.cartorios.model.Cartorio;
 import vc.com.cartorios.service.CartorioService;
+import vc.com.cartorios.util.CartorioDTO;
 
 @Controller
 @RequestMapping("/cartorio")
@@ -52,27 +47,32 @@ public class CartorioController {
 	}
 	
 	@RequestMapping(value="/pesquisar",method=RequestMethod.GET)
-	public ModelAndView pesquisarCartorio(@RequestParam String paramPesquisa, 
-			String valor, Model model){
-		
-		byte[]bytesParamPesquisa=paramPesquisa.getBytes(ISO_8859_1);
-		byte[]bytesValorPesquisa=valor.getBytes(ISO_8859_1);
-		
-		String parametroEmUTF8 = new String(bytesParamPesquisa, UTF_8);
-		String valorEmUTF8 = new String(bytesValorPesquisa,UTF_8);
-		
-		List<Cartorio> cartorios = new ArrayList<>();
-		
-		if(parametroEmUTF8.equalsIgnoreCase("Cartórios"))			
-			cartorios = cartorioService.pesquisarTodosCartorios();
-		else
-			cartorios = cartorioService.pesquisarCartorio(parametroEmUTF8, valorEmUTF8);
-		
-		model.addAttribute("listaCartorios",cartorios);
-		
+	public ModelAndView pesquisarCartorio(@ModelAttribute CartorioDTO parametrosCartorio,
+			Model model){
 		ModelAndView modelAndView = new ModelAndView("pesquisar-cartorio");
+		Cartorio cartorio = cartorioService.pesquisarCartorio(parametrosCartorio);
+		model.addAttribute("cartorio",cartorio);
 		return modelAndView;
 	}
 	
+	@RequestMapping("/editar")
+	public ModelAndView editarCartorioPagina(@RequestParam String id,Model model){
+		Cartorio cartorioLocalizado = cartorioService.pesquisarCartorio(id);
+		model.addAttribute("cartorio", cartorioLocalizado);
+		return new ModelAndView("editar-cartorio");
+	}
+	
+	@RequestMapping("/excluir")
+	public ModelAndView excluirCartorio(@RequestParam String id, Model model){
+		ModelAndView modelAndView = new ModelAndView("mensagem");
+		boolean response = cartorioService.excluirCartorio(id);
+		String message = "";
+		if(response)
+			message = "Cartório salvo com sucesso";
+		else
+			message = "Não foi possível salvar o cartório. Tente novamente";
+		modelAndView.addObject("message",message);
+		return modelAndView;
+	}
 	
 }

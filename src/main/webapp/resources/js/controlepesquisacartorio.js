@@ -13,11 +13,6 @@ function exibeOutros(){
 		document.getElementById("valor").style.display="inline"
 		document.getElementById("btnPesquisar").style.display="inline";
 		
-	}else if(document.getElementById("cartorios").value="Cartórios"){
-		alert('cart');
-		document.getElementById("valor").style.visibility="hidden";
-		document.getElementById("btnPesquisar").style.display="inline";
-		
 	}else if(document.getElementById("id").value="ID"){
 		
 		document.getElementById("valor").style.display="inline"

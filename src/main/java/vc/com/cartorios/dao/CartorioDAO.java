@@ -1,5 +1,7 @@
 package vc.com.cartorios.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -80,6 +82,38 @@ public class CartorioDAO  {
 				em.close();
 			}
 		}
-	 
+
+	public List<Cartorio> findAll() {
+		// TODO Auto-generated method stub
+		EntityManager em = getEM();
+		try{
+			Query query = em.createQuery("from Cartorio");
+			List<Cartorio> cartorios = Cartorio.castList
+					(Cartorio.class, query.getResultList());
+			return cartorios;
+		}finally{
+			em.close();
+		}
+	}
+	public List<Cartorio> salvarCartorios(List<Cartorio>cartorios){
+		/*EntityManager em = getEM();
+			try{
+				em.getTransaction().begin();
+				em.remove(em.getReference(Cartorio.class, id));
+				em.getTransaction().commit();
+				*/
+		EntityManager em = getEM();
+		try{
+			em.getTransaction().begin();
+			for(Cartorio cartorio:cartorios){
+				em.persist(cartorio);
+			}
+			em.getTransaction().commit();
+		}finally{
+			
+			em.close();
+		}
+		return cartorios;
+	}
 	
 }

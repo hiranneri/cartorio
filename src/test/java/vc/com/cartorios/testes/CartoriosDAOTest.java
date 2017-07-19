@@ -1,7 +1,9 @@
 package vc.com.cartorios.testes;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +26,13 @@ public class CartoriosDAOTest {
 	public void setUp() throws Exception {
 		cartorioFerrazVasconcelos = new Cartorio();
 		
-		cartorioFerrazVasconcelos.setNome("Cartório de Ferraz de Vasconcelos");
+		cartorioFerrazVasconcelos.setNome("Cartório de Cubatão");
 		
 		enderecoFerraz = new Endereco();
-		enderecoFerraz.setRua("Avenida Mal.");
-		enderecoFerraz.setNumero(10);
+		enderecoFerraz.setRua("Avenida 9 de Abril");
+		enderecoFerraz.setNumero(102);
 		enderecoFerraz.setBairro("Angélica");
-		enderecoFerraz.setCidade("São Paulo");
+		enderecoFerraz.setCidade("Cubatão");
 		enderecoFerraz.setEstado("São Paulo");
 		cartorioFerrazVasconcelos.setEndereco(enderecoFerraz);
 		
@@ -47,8 +49,8 @@ public class CartoriosDAOTest {
 			assertNotEquals(null, id);
 			
 			cartorioLocalizado = cartorioDAO.pesquisarPorID(id);
-			assertEquals("Cartório de Santos", cartorioLocalizado.getNome());
-			assertEquals("Avenida Mal.", cartorioLocalizado.getEndereco().getRua());
+			assertEquals("Cartório de Cubatão", cartorioLocalizado.getNome());
+			assertEquals("Avenida 9 de Abril", cartorioLocalizado.getEndereco().getRua());
 		
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -71,9 +73,91 @@ public class CartoriosDAOTest {
 	}
 	@Test
 	public void testPesquisarPeloNome(){
-		Cartorio cartorio = cartorioDAO.pesquisarPorNome("Cartório de Ferraz de Vasconcelos");
+		Cartorio cartorio = cartorioDAO.pesquisarPorNome("Cartório de Cubatão");
 		assertNotEquals(null,cartorio);
-		assertEquals("Cartório de São Vicente", cartorio.getNome());
+		assertEquals("Cartório de Cubatão", cartorio.getNome());
+	}
+	@Test
+	public void testFindAll() {
+		List<Cartorio> cartorios = cartorioDAO.findAll();
+		assertNotEquals(null, cartorios);
+		assertTrue(cartorios.size()>0);
+	}
+	/*Para salvar um cartório (via REST), forneça uma lista com um único objeto 
+	 * do tipo Cartório
+	 * Ou deseja salvar uma lista de cartórios, forneça uma lista com os mesmos.
+	 */
+	@Test
+	public void testSalvarCartorios(){
+		List<Cartorio>listaDeUmCartorio = new ArrayList<>();
+		listaDeUmCartorio.add(criarUmCartorio());
+		listaDeUmCartorio = cartorioDAO.salvarCartorios(listaDeUmCartorio);
+		assertNotEquals(null, listaDeUmCartorio.get(0).getId());
+		
+		List<Cartorio>listaDeVariosCartorios = new ArrayList<>();
+		listaDeVariosCartorios.addAll(criarVariosCartorios());
+		listaDeVariosCartorios = cartorioDAO.salvarCartorios(listaDeVariosCartorios);
+		for(int i=0;i<listaDeUmCartorio.size();i++)
+			assertNotEquals(null, listaDeVariosCartorios.get(i).getId());
+	}
+	@Test
+	public void testExcluir(){
+		Long id = 9L;
+		cartorioDAO.excluir(id);
+		Cartorio cartorioExcluido = cartorioDAO.pesquisarPorID(id);
+		assertEquals(null, cartorioExcluido);
 	}
 	
+	private Cartorio criarUmCartorio(){
+		Cartorio cartorioMooca = new Cartorio();
+		cartorioMooca.setNome("23º Cartório da Mooca");
+		Endereco enderecoCartorioMooca = new Endereco();
+		enderecoCartorioMooca.setRua("Rua Diamantino");
+		enderecoCartorioMooca.setNumero(1);
+		enderecoCartorioMooca.setBairro("Mooca");
+		enderecoCartorioMooca.setCidade("São Paulo");
+		enderecoCartorioMooca.setEstado("São Paulo");
+		cartorioMooca.setEndereco(enderecoCartorioMooca);
+		return cartorioMooca;
+	}
+	
+	private List<Cartorio> criarVariosCartorios(){
+		List<Cartorio> cartorios = new ArrayList<>();
+		
+		Cartorio cartorioJabaquara = new Cartorio();
+		cartorioJabaquara.setNome("23º Cartório do Jabaquara");
+		Endereco enderecoCartorioJabaquara = new Endereco();
+		enderecoCartorioJabaquara.setRua("Rua Diamantino");
+		enderecoCartorioJabaquara.setNumero(1);
+		enderecoCartorioJabaquara.setBairro("Jabaraqua");
+		enderecoCartorioJabaquara.setCidade("São Paulo");
+		enderecoCartorioJabaquara.setEstado("São Paulo");
+		cartorioJabaquara.setEndereco(enderecoCartorioJabaquara);
+		
+		Cartorio cartorioSe = new Cartorio();
+		cartorioSe.setNome("20º Cartório da Sé");
+		Endereco enderecoCartorioSe = new Endereco();
+		enderecoCartorioSe.setRua("Rua Diamantino");
+		enderecoCartorioSe.setNumero(1);
+		enderecoCartorioSe.setBairro("Sé");
+		enderecoCartorioSe.setCidade("São Paulo");
+		enderecoCartorioSe.setEstado("São Paulo");
+		cartorioSe.setEndereco(enderecoCartorioSe);
+		
+		Cartorio cartorioMooca = new Cartorio();
+		cartorioMooca.setNome("23º Cartório da Mooca");
+		Endereco enderecoCartorioMooca = new Endereco();
+		enderecoCartorioMooca.setRua("Rua Diamantino");
+		enderecoCartorioMooca.setNumero(1);
+		enderecoCartorioMooca.setBairro("Mooca");
+		enderecoCartorioMooca.setCidade("São Paulo");
+		enderecoCartorioMooca.setEstado("São Paulo");
+		cartorioMooca.setEndereco(enderecoCartorioMooca);
+		
+		cartorios.add(cartorioSe);
+		cartorios.add(cartorioJabaquara);
+		cartorios.add(cartorioMooca);
+		
+		return cartorios;
+	}
 }

@@ -1,7 +1,7 @@
 package vc.com.cartorios.service;
 
-import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import vc.com.cartorios.dao.CartorioDAO;
@@ -10,7 +10,7 @@ import vc.com.cartorios.util.CartorioDTO;
 
 @Service
 public class CartorioService {
-	@Inject
+	@Autowired
 	private CartorioDAO cartorioDAO;
 	
 	public boolean cadastrarCartorio(Cartorio cartorio){

@@ -18,24 +18,21 @@ Sistema online feito para estudo, que tem a principal função de gerenciar os d
 
   <code>CREATE DATABASE db_cartorio;</code>
 
-Se você tem um usuário e senha diferente de "root", "0206", não esqueça de mudar no arquivo persistence.xml(link)
+Se você tem um usuário e senha diferente de "root", "0206", não esqueça de mudar no arquivo persistence.xml
 
 # Serviço REST
 
-<code>Todos os content-type tanto para requests, quanto para responses, deverão ser em JSON. </code>
+<code>Todos os content-type tanto para requests, quanto para responses são em formato JSON. </code>
 </br>
 <code> 
 GET (Produz todos os cartórios) - http://localhost:8080/desafiocartorios/cartorios
 </code></br>
 <code>
-GET (Produz o cartório informado pelo ID) - http://localhost:8080/desafiocartorios/cartorio/{cartorioId}
+GET (Produz o cartório informado pelo ID) - http://localhost:8080/desafiocartorios/cartorios/{cartorioId}
 </code></br>
 <code>
-POST (Consome um cartório) - http://localhost:8080/desafiocartorios/cartorio/
+POST (Consome um ou mais cartórios, sendo obrigatório a passagem de json's em array) - http://localhost:8080/desafiocartorios/cartorios/
 </code></br>
-<code>
-POST (Consome um array de cartórios) http://localhost:8080/desafiocartorios/cartorios/
-</code>
 
 # Link Oficial
 

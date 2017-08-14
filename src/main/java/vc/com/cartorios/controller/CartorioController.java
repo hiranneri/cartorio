@@ -1,8 +1,11 @@
 package vc.com.cartorios.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,22 +24,20 @@ public class CartorioController {
 	private CartorioService cartorioService;
 	
 	@RequestMapping(value="/cadastrar", method=RequestMethod.GET)
-	public ModelAndView cadastrarCartorioPagina(){
+	public ModelAndView cadastrarCartorioPagina(Cartorio cartorio){
 		ModelAndView modelAndView = new ModelAndView("cadastrar-cartorio");
-		modelAndView.addObject("cartorio",new Cartorio());
+		modelAndView.addObject("cartorio",cartorio);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/cadastrar",method=RequestMethod.POST)
-	public ModelAndView cadastrarCartorio(@ModelAttribute Cartorio cartorio){
+	public ModelAndView cadastrarCartorio(@ModelAttribute @Valid Cartorio cartorio, BindingResult result){
 		ModelAndView modelAndView = new ModelAndView("mensagem");
+		if(result.hasErrors()){
+			return cadastrarCartorioPagina(cartorio);
+		}
 		boolean response = cartorioService.cadastrarCartorio(cartorio);
-		String message = "";
-		if(response)
-			message = "Cartório salvo com sucesso";
-		else
-			message = "Não foi possível salvar o cartório. Tente novamente";
-		modelAndView.addObject("message",message);
+		modelAndView.addObject("message",mensagem(response));
 		return modelAndView;
 	}
 	
@@ -74,5 +75,12 @@ public class CartorioController {
 		modelAndView.addObject("message",message);
 		return modelAndView;
 	}
-	
+	private String mensagem(boolean response){
+		String message = "";
+		if(response)
+			message = "Cartório salvo com sucesso";
+		else
+			message = "Não foi possível salvar o cartório. Tente novamente";
+		return message;
+	}
 }

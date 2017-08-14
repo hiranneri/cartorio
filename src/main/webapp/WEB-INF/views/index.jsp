@@ -9,6 +9,7 @@
 	<title>Cartórios</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width"/>
+	<meta http-equiv="Cache-control" content="no-cache">
 	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 	<link type="text/css" href="<c:url value="/resources/css/icons.css"/>" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/skinblue.css"/>"/>
@@ -31,7 +32,7 @@
 				<ul style="display: none;">					
 					<li><a href="/desafiocartorios/cartorio/cadastrar">Cadastrar Cartório</a></li>
 					<li><a href="/desafiocartorios/cartorio/pesquisa">Pesquisar Cartório</a></li>
-					
+					<li><a href="/desafiocartorios/sair">Sair</a></li>
 				</ul>
 				</li>
 				</ul>
@@ -49,6 +50,7 @@
 		<div class="row"> 
 			<div class="c8">
 				<p class="titlehead">Cartórios COM VOCÊ - Home</p>
+				<p>Bem vindo, ${funcionarioLogado.nome}</p>
 			</div>
 			<div class="c4">
 				<h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> São Paulo</h1>
@@ -62,9 +64,9 @@
 	<div class="shadowundertop"></div>
 		
 		<div class="row">
-			<center>
+			
 				<img src="<c:url value="/resources/images/logocartorio.png"/>"/>
-			</center>
+			
 		</div>
 		
 		

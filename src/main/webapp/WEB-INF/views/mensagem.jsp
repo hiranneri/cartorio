@@ -123,7 +123,7 @@
 <script src="/resources/js/modernizr-latest.js"></script>
 
 <!-- menu & scroll to top -->
-<script src="<c:url value="/resources/js/common.js"/>"/> </script>
+<script src="<c:url value="/resources/js/common.js"/>"/></script> 
 	
 <!-- twitter -->
 <script src="/resources/js/jquery.tweet.js"></script>

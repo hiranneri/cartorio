@@ -5,7 +5,7 @@ import javax.persistence.Persistence;
 public class CriaTabela {
 
 	public static void main(String[] args) {
-		Persistence.createEntityManagerFactory("desafiocartoriosPU");
+		Persistence.createEntityManagerFactory("desafiocartorios");
 		System.exit(0);
 	}
 	

@@ -1,5 +1,6 @@
 package vc.com.cartorios.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,23 +13,37 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotBlank;
 
 
 
 @Entity
 @Table(name="tb_cartorios")
-public class Cartorio {
+public class Cartorio implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(generator="incr")
 	@GenericGenerator(name="incr", strategy="increment")
 	private Long id;
 	
 	@Column(name="nm_cartorio", length=255, nullable=false)
+	@NotNull
+	@Size(max=254, message="Máximo 254 caracteres")
+	@NotBlank(message="Nome do cartório obrigatório")
 	private String nome;
 	
 	@OneToOne(cascade=CascadeType.ALL)
+	@Valid
+	@NotNull
 	private Endereco endereco;
 	
 	
@@ -42,7 +57,7 @@ public class Cartorio {
 		return nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.trim();
 	}
 	public Endereco getEndereco() {
 		return endereco;

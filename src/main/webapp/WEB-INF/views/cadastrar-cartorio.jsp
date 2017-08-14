@@ -14,6 +14,9 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/skinblue.css"/>"/>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/responsive.css"/>"/>
 	<script src="<c:url value="/resources/js/jquery-1.9.0.min.js"/>"/></script><!-- the rest of the javascript at the bottom of the document -->
+	<style>
+		
+	</style>
 </head>
 <body>
 	<div class="grid">
@@ -26,8 +29,9 @@
 				
 				<li><a href="#">Cartório</a>
 				<ul style="display: none;">					
-					<li><a href="/desafiocartorios/index">Home</a></li>
+					<li><a href="/desafiocartorios/">Home</a></li>
 					<li><a href="/desafiocartorios/cartorio/pesquisa">Pesquisar Cartório</a></li>
+					<li><a href="/desafiocartorios/sair">Sair</a></li>
 					
 				</ul>
 				</li>
@@ -60,24 +64,31 @@
 		<div class="row">
 			(*) Campos Obrigatórios
 			<br><br>
+				<form:errors path="*" cssClass="errorblock" element="div" />
 			<form:form method="POST" modelAttribute="cartorio" action="/desafiocartorios/cartorio/cadastrar">
-				<form:label path="nome">Nome:</form:label>
-				<form:input path="nome" />
+				<form:errors path="nome" cssClass="error" />
+				<form:label path="nome">Nome*:</form:label>
+				<form:input path="nome"  />
 				<br>
-				<form:label path="endereco.rua">Endereço:</form:label>
-				<form:input path="endereco.rua"/>
+				<form:errors path="endereco.rua" cssClass="error" />
+				<form:label path="endereco.rua">Endereço*:</form:label>
+				<form:input path="endereco.rua" />
 				<br>
-				<form:label path="endereco.numero">Número</form:label>
-				<form:input type="number" path="endereco.numero"/>
+				<form:errors path="endereco.numero" cssClass="error" />
+				<form:label path="endereco.numero">Número*: </form:label>
+				<form:input type="number" path="endereco.numero" />
 				<br>
-				<form:label path="endereco.cidade">Cidade</form:label>
-				<form:input path="endereco.cidade"/>
+				<form:errors path="endereco.cidade" cssClass="error" />
+				<form:label path="endereco.cidade">Cidade*: </form:label>
+				<form:input path="endereco.cidade" />
 				<br>
-				<form:label path="endereco.bairro">Bairro</form:label>
-				<form:input path="endereco.bairro"/>
+				<form:errors path="endereco.bairro" cssClass="error" />
+				<form:label path="endereco.bairro">Bairro*: </form:label>
+				<form:input path="endereco.bairro" />
 				<br>
-				<form:label path="endereco.estado">Estado</form:label>
-				<form:input path="endereco.estado"/>
+				<form:errors path="endereco.estado" cssClass="error" />
+				<form:label path="endereco.estado">Estado*: </form:label>
+				<form:input path="endereco.estado" />
 				<br>
 				
 				
@@ -136,13 +147,13 @@
 <script src="/resources/js/modernizr-latest.js"></script>
 
 <!-- menu & scroll to top -->
-<script src="<c:url value="/resources/js/common.js"/>"/> </script>
-	
+
+<script src="<c:url value="/resources/js/common.js"/>"/></script> 
 <!-- twitter -->
 <script src="/resources/js/jquery.tweet.js"></script>
 
 <!-- cycle -->
-<script src="<c:url value="/resources/js/jquery.cycle.js"/>"/></script>
+<script src="<c:url value="/resources/js/jquery.cycle.js"/> "/> </script>
 
 
 <!-- CALL toggle -->

@@ -4,6 +4,7 @@ xsi:schemaLocation= "http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.or
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	<class>vc.com.cartorios.model.Cartorio</class>
 	<class>vc.com.cartorios.model.Endereco</class>
+	<class>vc.com.cartorios.model.Funcionario</class>
 <properties>
 <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/db_desafiocartorios"/>
 <property name="javax.persistence.jdbc.user" value="root" />

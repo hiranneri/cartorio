@@ -1,5 +1,5 @@
 # Cartorios Com VC
-Sistema online feito para estudo, que tem a principal função de gerenciar os dados de cartórios espalhados pelo o Brasil. O front-end está sendo desenvolvido em HTML, CSS e JSP, e no backend com as tecnologias Java: Spring MVC, JPA, e a principio está sendo usado o banco de dados MySQL, o sistema também contém serviço REST.
+Sistema online feito para estudo, que tem a principal função de gerenciar os dados de cartórios. O front-end está sendo desenvolvido em HTML, CSS e JSP, e no backend com as tecnologias Java: Spring MVC, JPA, e a principio está sendo usado o banco de dados MySQL, o sistema também contém serviço REST.
 
 # O que faz?
  - Cadastro de Cartório

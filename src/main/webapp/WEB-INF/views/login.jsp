@@ -16,87 +16,32 @@
 	<script src="<c:url value="/resources/js/jquery-1.9.0.min.js"/>"/></script><!-- the rest of the javascript at the bottom of the document -->
 </head>
 <body>
-	<div class="grid">
-		<div class="row space-bot">
-		
-		<!--Menu-->
-		<div class="c8">
-			<nav id="topNav">
-			<ul id="responsivemenu">
-				
-				<li><a href="#">Cartório</a>
-				<ul style="display: none;">					
-					<li><a href="/desafiocartorios/">Home</a></li>
-					<li><a href="/desafiocartorios/cartorio/pesquisa">Pesquisar Cartório</a></li>
-					<li><a href="/desafiocartorios/sair">Sair</a></li>
-					
-				</ul>
-				</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<!-- HEADER
-================================================== -->
-<div class="undermenuarea">
-	<div class="boxedshadow">
-	</div>
-	<div class="grid">
-		<div class="row"> 
-			<div class="c8">
-				<p class="titlehead">Cartórios COM VOCÊ - Editar Cartório</p>
-			</div>
-			<div class="c4">
-				<h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> São Paulo</h1>
-			</div>
-		</div>
-	</div>
-</div>
 <!-- CONTENT
 ================================================== -->
 <div class="grid">
 	<div class="shadowundertop"></div>
 		
 		<div class="row">
-			(*) Campos Obrigatórios
+			
+				<img src="<c:url value="/resources/images/logocartorio.png"/>"/>
+			
+		</div>
+		
+		<div class="row">
+			Insira o seu nome e senha
 			<br><br>
-			<form:form method="POST" modelAttribute="cartorio" action="/desafiocartorios/cartorio/cadastrar">
-				<form:label path="id">ID:</form:label>
-				<form:input path="id" readonly="true"/>
-				<br>
-				<form:errors path="nome" cssClass="error" />
+			<form:form method="POST" modelAttribute="funcionario" action="/desafiocartorios/">
 				<form:label path="nome">Nome:</form:label>
 				<form:input path="nome" />
 				<br>
-				<form:errors path="endereco.rua" cssClass="error" />
-				<form:label path="endereco.rua">Endereço:</form:label>
-				<form:input path="endereco.rua"/>
-				<br>
-				<form:errors path="endereco.numero" cssClass="error" />
-				<form:label path="endereco.numero">Número</form:label>
-				<form:input type="number" path="endereco.numero"/>
-				<br>
-				<form:errors path="endereco.cidade" cssClass="error" />
-				<form:label path="endereco.cidade">Cidade</form:label>
-				<form:input path="endereco.cidade"/>
-				<br>
-				<form:errors path="endereco.bairro" cssClass="error" />
-				<form:label path="endereco.bairro">Bairro</form:label>
-				<form:input path="endereco.bairro"/>
-				<br>
-				<form:errors path="endereco.estado" cssClass="error" />
-				<form:label path="endereco.estado">Estado</form:label>
-				<form:input path="endereco.estado"/>
+				<form:label path="senha">Senha:</form:label>
+				<form:password path="senha"/>
 				<br>
 				
-				
-				<button type="submit" value="Salvar">Salvar</button>
+				<button type="submit" value="Acessar">Acessar</button>
 				
 			</form:form>
 		</div>
-		
-		
 		
 </div><!-- end grid -->
 <!-- FOOTER
@@ -115,9 +60,9 @@
 				<h2 class="title"><i class="icon-envelope-alt"></i> Contact</h2>
 				<hr class="footerstress">
 				<dl>
-					<dt>Avenida Paulista, 7654</dt>
-					<dd><span>Telephone:</span>11 3456-7899</dd>
-					<dd>E-mail: <a href="more.html">cartorios@cartorio.com</a></dd>
+					<dt>2536 Zamora Road, Missisipi, 74C</dt>
+					<dd><span>Telephone:</span>+1 348 271 9483</dd>
+					<dd>E-mail: <a href="more.html">mail@yourweb.com</a></dd>
 				</dl>
 				<ul class="social-links" style="margin-top:15px;">
 					<li class="twitter-link smallrightmargin">
@@ -138,7 +83,17 @@
 		</div>
 	</div>
 </div>
-
+<!-- copyright area -->
+<div class="copyright">
+	<div class="grid">
+		<div class="row">
+			<div class="c6">
+				 Your Name &copy; 2015. All Rights Reserved.
+			</div>
+			
+		</div>
+	</div>
+</div>
 
 <!-- JAVASCRIPTS
 ================================================== -->
@@ -146,14 +101,13 @@
 <script src="/resources/js/modernizr-latest.js"></script>
 
 <!-- menu & scroll to top -->
-<script src="<c:url value="/resources/js/common.js"/>"/></script>
+<script src="<c:url value="/resources/js/common.js"/>"/> </script>
 	
 <!-- twitter -->
 <script src="/resources/js/jquery.tweet.js"></script>
 
 <!-- cycle -->
 <script src="<c:url value="/resources/js/jquery.cycle.js"/>"/></script>
-
 
 <!-- CALL toggle -->
 <script type="text/javascript"> 

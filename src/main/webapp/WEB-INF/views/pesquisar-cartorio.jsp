@@ -78,16 +78,16 @@
 						<label for="nome" onclick="exibeOutros();" id="parametroPesquisa">Nome<br></label><br>
 					 	
 					 	
-						<input type="search" name="valor" placeholder="Busca..." >
+						<input type="search" name="valor" id="valor" placeholder="Busca..." required>
 	
-			      		<button type="submit" value="Pesquisar" id="btnPesquisar">Pesquisar</button>
+			      		<button type="submit" value="Pesquisar" id="btnPesquisar" >Pesquisar</button>
 			      	</form>
 			      	
 			      </div>
 			  </div>
 		</div>
       </section>
-		
+		<c:if test="${cartorio!=null}">
     	<table border="1" id="tabelaCartorios">
     	<thead>
 			<tr>
@@ -108,9 +108,11 @@
 		    		<td>${cartorio.endereco.cidade}</td>
 		    		<td>${cartorio.endereco.estado}</td>
 		    		<td>
+		    			
 			    		<a href="<c:url value="/cartorio/editar"/>?id=${cartorio.id}">
 			    			<button type="button" class="btn btn-success" value="Editar">Editar</button>
 			    		</a>
+			    		
 		    		</td>
 		    		<td>
 		    			<a href="<c:url value="/cartorio/excluir"/>?id=${cartorio.id}">
@@ -120,7 +122,7 @@
 		    		</td>
 			</tbody>
 		</table>
-		
+		</c:if>
 		
 			</div>
 		</div>

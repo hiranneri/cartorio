@@ -69,9 +69,9 @@ public class CartorioController {
 		boolean response = cartorioService.excluirCartorio(id);
 		String message = "";
 		if(response)
-			message = "Cartório salvo com sucesso";
+			message = "Cartório excluído com sucesso";
 		else
-			message = "Não foi possível salvar o cartório. Tente novamente";
+			message = "Não foi possível excluir o cartório. Tente novamente";
 		modelAndView.addObject("message",message);
 		return modelAndView;
 	}

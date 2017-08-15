@@ -46,6 +46,7 @@ public class CartorioDAO  {
 		return cartorio;
 		
 	}
+	
 	@Transactional
 	public Cartorio pesquisarPorID(Long id){
 		EntityManager em = getEM();
@@ -60,12 +61,16 @@ public class CartorioDAO  {
 	@Transactional
 	public Cartorio pesquisarPorNome(String nome){
 		EntityManager em = getEM();
+		Cartorio cartorio=null;
 		try{
-			Query query = em.createQuery("from Cartorio where nm_cartorio=:nome");
-			query.setParameter("nome", nome);
-			Cartorio cartorio = Cartorio.castList
-					(Cartorio.class,query.getResultList()).get(0);
+			//select id,nm_cartorio from tb_cartorios order by id desc limit 1;
+			Query query = em.createQuery("from Cartorio where nome like :nome");
+			query.setParameter("nome", "%"+nome+"%");
+			List<Cartorio> lista = Cartorio.castList(Cartorio.class, query.getResultList());
+			cartorio = lista.get(lista.size()-1);
 			return cartorio;
+		}catch(Exception e){
+			return null;
 		}finally{
 			em.close();
 		}
@@ -96,12 +101,7 @@ public class CartorioDAO  {
 		}
 	}
 	public List<Cartorio> salvarCartorios(List<Cartorio>cartorios){
-		/*EntityManager em = getEM();
-			try{
-				em.getTransaction().begin();
-				em.remove(em.getReference(Cartorio.class, id));
-				em.getTransaction().commit();
-				*/
+		
 		EntityManager em = getEM();
 		try{
 			em.getTransaction().begin();

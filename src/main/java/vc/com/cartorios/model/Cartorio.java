@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -21,7 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
 
-
+@NamedQuery(name="Cartorio.nome", query="SELECT c FROM Cartorio c where c.nome LIKE :nome")
 @Entity
 @Table(name="tb_cartorios")
 public class Cartorio implements Serializable {

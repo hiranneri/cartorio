@@ -23,9 +23,9 @@ public class LoginController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView start(@ModelAttribute Funcionario funcionario){
-		
-		return new ModelAndView("login");
-		
+		if(session.getAttribute("funcionarioLogado")==null)
+			return new ModelAndView("login");
+		return new ModelAndView("index");
 	}
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)

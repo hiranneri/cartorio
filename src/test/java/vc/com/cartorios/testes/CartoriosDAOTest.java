@@ -17,7 +17,7 @@ import vc.com.cartorios.model.Cartorio;
 import vc.com.cartorios.model.Endereco;
 
 public class CartoriosDAOTest {
-	Cartorio cartorioFerrazVasconcelos;
+	Cartorio cartorioUm;
 	Endereco enderecoFerraz;
 	CartorioDAO cartorioDAO;
 	Cartorio cartorioLocalizado;
@@ -25,9 +25,9 @@ public class CartoriosDAOTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		cartorioFerrazVasconcelos = new Cartorio();
+		cartorioUm = new Cartorio();
 		
-		cartorioFerrazVasconcelos.setNome("Cartório de Cubatão");
+		cartorioUm.setNome("Cartório de Cubatão");
 		
 		enderecoFerraz = new Endereco();
 		enderecoFerraz.setRua("Avenida 9 de Abril");
@@ -35,7 +35,7 @@ public class CartoriosDAOTest {
 		enderecoFerraz.setBairro("Angélica");
 		enderecoFerraz.setCidade("Cubatão");
 		enderecoFerraz.setEstado("São Paulo");
-		cartorioFerrazVasconcelos.setEndereco(enderecoFerraz);
+		cartorioUm.setEndereco(enderecoFerraz);
 		
 		this.cartorioDAO = new CartorioDAO();
 		
@@ -43,11 +43,10 @@ public class CartoriosDAOTest {
 		this.cartorios = new ArrayList<>();
 	}
 	@Test
-	@Ignore
 	public void testSalvar() {
 		 
 		try{
-			Long id = cartorioDAO.salvar(cartorioFerrazVasconcelos).getId();
+			Long id = cartorioDAO.salvar(cartorioUm).getId();
 			assertNotEquals(null, id);
 			
 			cartorioLocalizado = cartorioDAO.pesquisarPorID(id);
@@ -60,13 +59,13 @@ public class CartoriosDAOTest {
 		}
 		
 	}
-	@Test
 	@Ignore
+	@Test
 	public void testEditar(){
 		try{
-			cartorioFerrazVasconcelos.setId(2L);
-			cartorioFerrazVasconcelos.setNome("Cartório Editado");
-			Cartorio c = cartorioDAO.salvar(cartorioFerrazVasconcelos);
+			cartorioUm.setId(2L);
+			cartorioUm.setNome("Cartório Editado");
+			Cartorio c = cartorioDAO.salvar(cartorioUm);
 			assertNotEquals(null,c);
 			assertEquals("Cartório Editado",c.getNome());
 			assertEquals(Long.valueOf(2L), c.getId());
@@ -82,7 +81,6 @@ public class CartoriosDAOTest {
 		assertEquals(Long.valueOf(22L),cartorio.getId());
 	}
 	@Test
-	@Ignore
 	public void testFindAll() {
 		List<Cartorio> cartorios = cartorioDAO.findAll();
 		assertNotEquals(null, cartorios);
@@ -93,7 +91,6 @@ public class CartoriosDAOTest {
 	 * Ou deseja salvar uma lista de cartórios, forneça uma lista com os mesmos.
 	 */
 	@Test
-	@Ignore
 	public void testSalvarCartorios(){
 		List<Cartorio>listaDeUmCartorio = new ArrayList<>();
 		listaDeUmCartorio.add(criarUmCartorio());
@@ -107,7 +104,6 @@ public class CartoriosDAOTest {
 			assertNotEquals(null, listaDeVariosCartorios.get(i).getId());
 	}
 	@Test
-	@Ignore
 	public void testExcluir(){
 		Long id = 9L;
 		cartorioDAO.excluir(id);

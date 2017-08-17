@@ -24,7 +24,6 @@ public class LoginDAOTest {
 		
 		
 	}
-	@Ignore
 	@Test
 	public void testValidarFuncionarioCadastrado() {
 		f = loginDAO.validarFuncionario(this.funcionarioCadastrado);

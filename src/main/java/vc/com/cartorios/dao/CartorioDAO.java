@@ -83,6 +83,8 @@ public class CartorioDAO  {
 				em.getTransaction().begin();
 				em.remove(em.getReference(Cartorio.class, id));
 				em.getTransaction().commit();
+			}catch(Exception e){
+				return;
 			}finally{
 				em.close();
 			}
